@@ -53,7 +53,6 @@ jobs:
           echo "=========================================="
           echo "VERIFYING PREPROCESSING RESULT"
           echo "=========================================="
-          
           if [ -f "customer_shopping_data_preprocessing.csv" ]; then
             echo "✅ Preprocessing successful!"
             echo ""
@@ -64,14 +63,7 @@ jobs:
             head -n 5 customer_shopping_data_preprocessing.csv
             echo ""
             echo "Dataset info:"
-            python -c "
-import pandas as pd
-df = pd.read_csv('customer_shopping_data_preprocessing.csv')
-print(f'Shape: {df.shape}')
-print(f'Columns: {list(df.columns)}')
-print(f'Target column: total_amount')
-print(f'Target stats - Mean: {df[\"total_amount\"].mean():.4f}, Std: {df[\"total_amount\"].std():.4f}')
-"
+            python -c "import pandas as pd; df = pd.read_csv('customer_shopping_data_preprocessing.csv'); print(f'Shape: {df.shape}'); print(f'Columns: {list(df.columns)}'); print(f'Target column: total_amount'); print(f'Target stats - Mean: {df[\"total_amount\"].mean():.4f}, Std: {df[\"total_amount\"].std():.4f}')"
           else
             echo "❌ Preprocessing failed - output file not found"
             exit 1
